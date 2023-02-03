@@ -1,23 +1,21 @@
 import tkinter as tk
 from tkinter import filedialog
 
-
 def open_file():
     file_path = filedialog.askopenfilename()
     with open(file_path, 'r') as file:
+        text.delete('1.0', tk.END)
         text.insert('1.0', file.read())
-
 
 def save_file():
     file_path = filedialog.asksaveasfilename(defaultextension='.txt')
     with open(file_path, 'w') as file:
-        file.write(text.get('1.0', 'end'))
-
+        file.write(text.get('1.0', tk.END))
 
 root = tk.Tk()
-root.title("Text Editor")
+root.title("Notepad")
 
-text = tk.Text(root, wrap='word')
+text = tk.Text(root)
 text.pack(fill='both', expand=True)
 
 menu = tk.Menu(root)
